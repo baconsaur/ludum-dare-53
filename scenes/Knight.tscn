@@ -1,36 +1,126 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://sprites/placeholder.png" type="Texture" id=1]
-[ext_resource path="res://scripts/Knight.gd" type="Script" id=2]
+[ext_resource path="res://scripts/EnemyKnight.gd" type="Script" id=2]
 [ext_resource path="res://scripts/StateMachine.gd" type="Script" id=3]
-[ext_resource path="res://scripts/states/idle.gd" type="Script" id=4]
-[ext_resource path="res://scripts/states/crouch.gd" type="Script" id=5]
-[ext_resource path="res://scripts/states/walk.gd" type="Script" id=6]
-[ext_resource path="res://scripts/states/jump.gd" type="Script" id=7]
-[ext_resource path="res://scripts/states/crawl.gd" type="Script" id=9]
-[ext_resource path="res://scripts/states/fall.gd" type="Script" id=10]
+[ext_resource path="res://scripts/states/Idle.gd" type="Script" id=4]
+[ext_resource path="res://scripts/states/Move.gd" type="Script" id=5]
+[ext_resource path="res://scripts/states/Lunge.gd" type="Script" id=6]
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 10, 2 )
+
+[sub_resource type="AtlasTexture" id=3]
+atlas = ExtResource( 1 )
+region = Rect2( 48, 0, 48, 35 )
+
+[sub_resource type="AtlasTexture" id=4]
+atlas = ExtResource( 1 )
+region = Rect2( 0, 0, 48, 35 )
+
+[sub_resource type="AtlasTexture" id=11]
+atlas = ExtResource( 1 )
+region = Rect2( 240, 0, 48, 35 )
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 1 )
+region = Rect2( 192, 0, 48, 35 )
+
+[sub_resource type="AtlasTexture" id=5]
+atlas = ExtResource( 1 )
+region = Rect2( 144, 0, 48, 35 )
+
+[sub_resource type="AtlasTexture" id=6]
+atlas = ExtResource( 1 )
+region = Rect2( 96, 0, 48, 35 )
 
 [sub_resource type="SpriteFrames" id=1]
 animations = [ {
-"frames": [ ExtResource( 1 ) ],
+"frames": [ SubResource( 3 ) ],
 "loop": true,
-"name": "default",
+"name": "advance_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "advance_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 11 ) ],
+"loop": true,
+"name": "hit_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 12 ) ],
+"loop": true,
+"name": "hit_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "idle_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "idle_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 5 ), SubResource( 5 ) ],
+"loop": true,
+"name": "lunge_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 6 ), SubResource( 6 ) ],
+"loop": true,
+"name": "lunge_up",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 3 ) ],
+"loop": true,
+"name": "retreat_down",
+"speed": 5.0
+}, {
+"frames": [ SubResource( 4 ) ],
+"loop": true,
+"name": "retreat_up",
 "speed": 5.0
 } ]
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 7.5, 16 )
+[sub_resource type="RectangleShape2D" id=7]
+extents = Vector2( 6.5, 5.5 )
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 6.5, 5.75 )
+
+[sub_resource type="RectangleShape2D" id=10]
+extents = Vector2( 2.5, 12.5 )
 
 [node name="Knight" type="KinematicBody2D"]
 position = Vector2( 64, 32 )
 script = ExtResource( 2 )
 
+[node name="Sword" type="CollisionShape2D" parent="."]
+position = Vector2( 9, -2 )
+shape = SubResource( 9 )
+
 [node name="AnimatedSprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 1 )
+animation = "hit_down"
+flip_h = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 11.5, 1 )
-shape = SubResource( 2 )
+[node name="Torso" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Torso"]
+position = Vector2( -9.5, -1.5 )
+shape = SubResource( 7 )
+
+[node name="Legs" type="Area2D" parent="."]
+position = Vector2( -10, 9 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Legs"]
+position = Vector2( 0.5, 1.25 )
+shape = SubResource( 8 )
 
 [node name="StateMachine" type="Node" parent="."]
 script = ExtResource( 3 )
@@ -38,21 +128,26 @@ starting_state = NodePath("Idle")
 
 [node name="Idle" type="Node" parent="StateMachine"]
 script = ExtResource( 4 )
+animation_name = "idle"
 
-[node name="Fall" type="Node" parent="StateMachine"]
-script = ExtResource( 10 )
-
-[node name="Crouch" type="Node" parent="StateMachine"]
+[node name="Advance" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
+animation_name = "advance"
 
-[node name="Crawl" type="Node" parent="StateMachine"]
-script = ExtResource( 9 )
+[node name="Retreat" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation_name = "retreat"
+velocity = -200
 
-[node name="Walk" type="Node" parent="StateMachine"]
+[node name="Lunge" type="Node" parent="StateMachine"]
 script = ExtResource( 6 )
+animation_name = "lunge"
 
-[node name="Jump" type="Node" parent="StateMachine"]
-script = ExtResource( 7 )
+[node name="Hit" type="Node" parent="StateMachine"]
+script = ExtResource( 5 )
+animation_name = "hit"
+velocity = -100
+friction = 10
 
 [node name="Label" type="Label" parent="."]
 margin_left = -10.0
@@ -61,3 +156,10 @@ margin_right = 30.0
 margin_bottom = -17.0
 align = 1
 valign = 1
+
+[node name="Back" type="CollisionShape2D" parent="."]
+position = Vector2( -20, 4 )
+shape = SubResource( 10 )
+
+[connection signal="body_entered" from="Torso" to="." method="_on_Torso_body_entered"]
+[connection signal="body_entered" from="Legs" to="." method="_on_Legs_body_entered"]

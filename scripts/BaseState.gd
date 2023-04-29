@@ -8,16 +8,24 @@ var knight: Knight
 
 
 func enter():
-	knight.sprite.play(animation_name)
+	play_animation()
 
-func handle_input(_event):
-	return
+func handle_action(action):
+	if action == Knight.Actions.HIT:
+		return state_map["Hit"]
+
+	if action == Knight.Actions.SWORD_UP:
+		knight.sword_up()
+		play_animation()
+	elif action == Knight.Actions.SWORD_DOWN:
+		knight.sword_down()
+		play_animation()
 
 func process(_delta):
 	return
 
-func physics_process(_delta):
-	return
-
 func exit():
 	pass
+
+func play_animation():
+	knight.sprite.play(animation_name + "_" + knight.get_sword_position())

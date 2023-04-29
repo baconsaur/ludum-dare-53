@@ -9,7 +9,7 @@ script = ExtResource( 2 )
 [node name="Label" parent="VBoxContainer" index="0"]
 margin_top = 43.0
 margin_bottom = 54.0
-text = "Untitled Jam Game"
+text = "Livery Lost"
 
 [node name="StartButton" type="Button" parent="VBoxContainer" index="1"]
 margin_left = 108.0

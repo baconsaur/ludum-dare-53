@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=2]
+
+[ext_resource path="res://scenes/Knight.tscn" type="PackedScene" id=1]
+[ext_resource path="res://scripts/PlayerController.gd" type="Script" id=2]
+
+[node name="PlayerKnight" instance=ExtResource( 1 )]
+script = ExtResource( 2 )
+up_idle_position = Vector2( -9, -2 )
+down_idle_position = Vector2( -9, 7 )
+up_lunge_position = Vector2( -14, -3 )
+down_lunge_position = Vector2( -14, 9 )
+
+[node name="Sword" parent="." index="0"]
+position = Vector2( -9, -2 )
+
+[node name="AnimatedSprite" parent="." index="1"]
+flip_h = false
+
+[node name="CollisionShape2D" parent="Torso" index="0"]
+position = Vector2( 10, -2 )
+
+[node name="Legs" parent="." index="3"]
+position = Vector2( 10, 9 )
+
+[node name="CollisionShape2D" parent="Legs" index="0"]
+position = Vector2( 0, 1 )
+
+[node name="Advance" parent="StateMachine" index="1"]
+velocity = -200
+
+[node name="Retreat" parent="StateMachine" index="2"]
+velocity = 200
+
+[node name="Hit" parent="StateMachine" index="4"]
+velocity = 100
+
+[node name="Back" parent="." index="6"]
+position = Vector2( 21, 4 )
