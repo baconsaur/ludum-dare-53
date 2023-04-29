@@ -17,3 +17,5 @@ export_presets.cfg
 data_*/
 mono_crash.*.json
 
+*.aup
+sounds/*_data

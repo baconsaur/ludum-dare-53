@@ -4,12 +4,13 @@ extends BaseState
 export var velocity = 200
 export var friction = 15
 
-var finished = false
-
 func enter():
 	.enter()
-	finished = false
-	knight.velocity.x = velocity
+	
+	if knight.test_move(knight.get_transform(), Vector2(velocity * 2, 0)):
+		knight.velocity.x = velocity
+	else:
+		print("nope")
 
 func process(delta):
 	var new_state = .process(delta)

@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/BaseState.gd"
 }, {
 "base": "BaseState",
+"class": "Defeat",
+"language": "GDScript",
+"path": "res://scripts/states/Defeat.gd"
+}, {
+"base": "BaseState",
 "class": "Idle",
 "language": "GDScript",
 "path": "res://scripts/states/Idle.gd"
@@ -23,6 +28,11 @@ _global_script_classes=[ {
 "class": "Knight",
 "language": "GDScript",
 "path": "res://scripts/Knight.gd"
+}, {
+"base": "BaseState",
+"class": "Lunge",
+"language": "GDScript",
+"path": "res://scripts/states/Lunge.gd"
 }, {
 "base": "BaseState",
 "class": "Move",
@@ -36,8 +46,10 @@ _global_script_classes=[ {
 } ]
 _global_script_class_icons={
 "BaseState": "",
+"Defeat": "",
 "Idle": "",
 "Knight": "",
+"Lunge": "",
 "Move": "",
 "StateMachine": ""
 }
@@ -126,6 +138,7 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 quality/driver/driver_name="GLES2"
+2d/snapping/use_gpu_pixel_snap=true
 vram_compression/import_etc=true
 vram_compression/import_etc2=false
 environment/default_environment="res://default_env.tres"

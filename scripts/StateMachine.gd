@@ -16,8 +16,7 @@ func init(knight):
 		state_map[child.name] = child
 
 	for child in children:
-		child.knight = knight
-		child.state_map = state_map
+		child.init(knight, state_map)
 	
 	change_state(get_node(starting_state))
 
@@ -31,13 +30,18 @@ func process(delta):
 func handle_action(action):
 	var next_state = current_state.handle_action(action)
 	if action and not next_state:
-		if not (action in [Knight.Actions.ADVANCE, Knight.Actions.RETREAT] and current_state is Move):
+		if not (
+			action in [Knight.Actions.ADVANCE, Knight.Actions.RETREAT] and current_state is Move
+		) and not (current_state is Lunge and action == Knight.Actions.LUNGE):
 			action_buffer = action
 			buffer_countdown = buffer_time
 			
 	change_state(next_state)
 
 func change_state(new_state):
+	if current_state is Defeat:
+		return
+
 	if not new_state:
 		return
 

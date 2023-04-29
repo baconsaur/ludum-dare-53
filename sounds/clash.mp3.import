@@ -1,0 +1,15 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+path="res://.import/clash.mp3-28ac620b16b11638587d287656bb127a.mp3str"
+
+[deps]
+
+source_file="res://sounds/clash.mp3"
+dest_files=[ "res://.import/clash.mp3-28ac620b16b11638587d287656bb127a.mp3str" ]
+
+[params]
+
+loop=false
+loop_offset=0

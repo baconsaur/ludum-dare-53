@@ -1,13 +1,35 @@
 extends Node2D
 
+export var player_spawn_point = Vector2()
+export var opponent_spawn_point = Vector2()
+
 var pause_menu = preload("res://scenes/PauseMenu.tscn")
 var game_over_menu = preload("res://scenes/GameOverMenu.tscn")
+var knight_obj = preload("res://scenes/Knight.tscn")
+
+onready var player = $PlayerKnight
 onready var ui = $CanvasLayer/UI
 
+
+func _ready():
+	player.connect("defeated", self, "game_over")
+	spawn_knight()
 
 func _process(delta):
 	if Input.is_action_just_pressed("ui_cancel"):
 		pause()
+
+func spawn_knight():
+	var knight = knight_obj.instance()
+	knight.position = opponent_spawn_point
+	add_child(knight)
+	knight.connect("defeated", self, "handle_defeat", [knight])
+
+func handle_defeat(knight):
+	knight.queue_free()
+	yield(get_tree().create_timer(1.0), "timeout")
+	player.position = player_spawn_point
+	spawn_knight()
 
 func pause():
 	var pause_instance = pause_menu.instance()

@@ -1,6 +1,12 @@
+class_name Lunge
 extends BaseState
 
 var done = false
+
+
+func init(_knight, _state_map):
+	.init(_knight, _state_map)
+	knight.anim_player.connect("animation_finished", self, "complete_lunge")
 
 func handle_action(action):
 	return
@@ -8,7 +14,6 @@ func handle_action(action):
 func enter():
 	done = false
 	.enter()
-	knight.sprite.connect("animation_finished", self, "complete_lunge", [], CONNECT_ONESHOT)
 	knight.lunge()
 
 func process(delta):
@@ -19,6 +24,7 @@ func process(delta):
 	if done:
 		return state_map["Idle"]
 
-func complete_lunge():
-	done = true
-	knight.complete_lunge()
+func complete_lunge(anim_name):
+	if "lunge" in anim_name:
+		done = true
+		knight.complete_lunge()

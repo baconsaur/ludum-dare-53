@@ -15,7 +15,7 @@ func handle_action(action):
 		Knight.Actions.LUNGE:
 			if knight.lunge_countdown > 0:
 				return
-			return state_map["Lunge"]
+			return state_map["TestLunge"]
 
 func process(delta):
 	var new_state = .process(delta)
