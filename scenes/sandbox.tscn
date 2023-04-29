@@ -11,6 +11,23 @@ __meta__ = {
 [node name="Knight" parent="." instance=ExtResource( 1 )]
 position = Vector2( 105, 47 )
 
+[node name="Advance" parent="Knight/StateMachine" index="1"]
+animation_name = ""
+
+[node name="Retreat" parent="Knight/StateMachine" index="2"]
+animation_name = ""
+velocity = 200
+
+[node name="Hit" parent="Knight/StateMachine" index="4"]
+animation_name = ""
+velocity = 200
+friction = 15
+
+[node name="Knockback" parent="Knight/StateMachine" index="6"]
+animation_name = ""
+velocity = 200
+friction = 15
+
 [node name="PlayerKnight" parent="." instance=ExtResource( 2 )]
 position = Vector2( 117, 47 )
 

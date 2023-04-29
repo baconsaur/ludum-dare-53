@@ -7,9 +7,6 @@
 scale = Vector2( -1, 1 )
 script = ExtResource( 2 )
 
-[node name="AnimationPlayer" parent="." index="3"]
-method_call_mode = 1
-
 [node name="Advance" parent="StateMachine" index="1"]
 velocity = -200
 

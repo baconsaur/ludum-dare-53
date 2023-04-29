@@ -3,6 +3,9 @@ extends Knight
 
 func _process(delta):
 	._process(delta)
+	if is_defeated or (opponent and opponent.is_defeated):
+		return
+
 	if Input.is_action_pressed("left"):
 		states.handle_action(Actions.ADVANCE)
 	if Input.is_action_pressed("right"):

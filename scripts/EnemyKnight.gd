@@ -12,6 +12,9 @@ func _ready():
 func _process(delta):
 	._process(delta)
 
+	if is_defeated or (opponent and opponent.is_defeated):
+		return
+
 	if move_cooldown > 0:
 		move_cooldown -= delta
 		return
@@ -24,7 +27,7 @@ func _process(delta):
 		Actions.SWORD_UP: 0 if sword_position == SwordPositions.UP else 10,
 	}
 	
-	var cautious = legs_stripped or torso_stripped
+	var cautious = bool(strip_status["torso"] or strip_status["legs"])
 	
 	if opponent:
 		action_weights[Actions.ADVANCE] = 5

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scripts/EnemyKnight.gd" type="Script" id=2]
@@ -12,6 +12,7 @@
 [ext_resource path="res://sounds/slice.mp3" type="AudioStream" id=10]
 [ext_resource path="res://sounds/clink.mp3" type="AudioStream" id=11]
 [ext_resource path="res://scripts/states/Defeat.gd" type="Script" id=12]
+[ext_resource path="res://scripts/states/Hit.gd" type="Script" id=13]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5.25, 5 )
@@ -291,7 +292,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=20]
 resource_name = "hit_down"
-length = 0.166667
+length = 0.25
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
@@ -380,7 +381,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=21]
 resource_name = "hit_up"
-length = 0.166667
+length = 0.25
 step = 0.0833333
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
@@ -1293,7 +1294,7 @@ script = ExtResource( 6 )
 animation_name = "lunge"
 
 [node name="Hit" type="Node" parent="StateMachine"]
-script = ExtResource( 5 )
+script = ExtResource( 13 )
 animation_name = "hit"
 velocity = -150
 friction = 10
@@ -1310,7 +1311,7 @@ friction = 30
 
 [node name="Defeat" type="Node" parent="StateMachine"]
 script = ExtResource( 12 )
-animation_name = "idle"
+animation_name = "hit"
 
 [node name="Label" type="Label" parent="."]
 visible = false

@@ -38,3 +38,4 @@ func exit():
 
 func play_animation():
 	knight.anim_player.play(animation_name + "_" + knight.get_sword_position())
+	knight.anim_player.seek(0)

@@ -27,6 +27,9 @@ func spawn_knight():
 
 func handle_defeat(knight):
 	knight.queue_free()
+	if player.is_defeated:
+		return
+	
 	yield(get_tree().create_timer(1.0), "timeout")
 	player.position = player_spawn_point
 	spawn_knight()

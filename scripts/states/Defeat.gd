@@ -9,6 +9,9 @@ func enter():
 	yield(get_tree().create_timer(1.0), "timeout")
 	done = true
 
+func handle_action(_action):
+	return
+
 func process(_delta):
 	if not done:
 		return

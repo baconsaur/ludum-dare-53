@@ -28,11 +28,15 @@ var position_map = {
 }
 var velocity = Vector2.ZERO
 var lunge_countdown = 0
-var torso_stripped = false
-var legs_stripped = false
+var strip_status = {
+	"torso": false,
+	"legs": false
+}
 var start_y = 0
 var can_damage = false
+var can_be_damaged = true
 var opponent = null
+var is_defeated = false
 
 onready var states = $StateMachine
 onready var sprite = $BodySprite
@@ -65,11 +69,9 @@ func get_sword_position():
 
 func sword_up():
 	sword_position = SwordPositions.UP
-#	sword_collider.position = up_idle_position
 
 func sword_down():
 	sword_position = SwordPositions.DOWN
-#	sword_collider.position = down_idle_position
 
 func lunge():
 	can_damage = true
@@ -89,36 +91,27 @@ func fail_lunge():
 func knock_back():
 	states.handle_action(Actions.KNOCKBACK)
 
-func defeat():
-	states.handle_action(Actions.DEFEATED)
-
 func _on_Torso_body_entered(body):
-	if not body.is_in_group("Knight") or body == self or not body.can_damage:
-		return
-	states.handle_action(Actions.HIT)
-	
-	if torso_stripped:
-		return
-
-	shirt.play("damaged")
-	slice_sound.play()
-	torso_stripped = true
-	if legs_stripped:
-		defeat()
+	handle_hit(body, "torso", shirt)
 
 func _on_Legs_body_entered(body):
-	if not body.is_in_group("Knight") or body == self or not body.can_damage:
+	handle_hit(body, "legs", pants)
+
+func handle_hit(body, part, clothing_item):
+	if not body.is_in_group("Knight") or body == self or not body.can_damage or not can_be_damaged:
 		return
-	states.handle_action(Actions.HIT)
 	
-	if legs_stripped:
+	if not strip_status[part]:
+		clothing_item.play("damaged")
+		slice_sound.play()
+		strip_status[part] = true
+
+	if strip_status["torso"] and strip_status["legs"]:
+		is_defeated = true
+		states.handle_action(Actions.DEFEATED)
 		return
 
-	pants.play("damaged")
-	slice_sound.play()
-	legs_stripped = true
-	if torso_stripped:
-		defeat()
+	states.handle_action(Actions.HIT)
 
 func _on_PersonalBubble_area_entered(area):
 	opponent = area.get_parent()
