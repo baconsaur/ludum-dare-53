@@ -1,4 +1,4 @@
-class_name Enter
+class_name Exit
 extends BaseState
 
 export var velocity = 200

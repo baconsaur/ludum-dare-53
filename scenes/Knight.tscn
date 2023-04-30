@@ -1,4 +1,4 @@
-[gd_scene load_steps=49 format=2]
+[gd_scene load_steps=54 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scripts/EnemyKnight.gd" type="Script" id=2]
@@ -17,6 +17,7 @@
 [ext_resource path="res://sounds/swish.mp3" type="AudioStream" id=15]
 [ext_resource path="res://scripts/states/Stunned.gd" type="Script" id=16]
 [ext_resource path="res://scripts/states/Enter.gd" type="Script" id=17]
+[ext_resource path="res://scripts/states/Exit.gd" type="Script" id=18]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5.25, 5 )
@@ -256,9 +257,9 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=14]
 resource_name = "advance_down"
-length = 0.1
+length = 0.291667
 loop = true
-step = 0.0833333
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
 tracks/0/interp = 1
@@ -266,10 +267,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0416667, 0.125, 0.208333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 14, 15, 16, 17 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -346,9 +347,8 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=15]
 resource_name = "advance_up"
-length = 0.1
-loop = true
-step = 0.0833333
+length = 0.291667
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
 tracks/0/interp = 1
@@ -356,10 +356,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0416667, 0.125, 0.208333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 10, 11, 12, 13 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -448,7 +448,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 9 ]
+"values": [ 35 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -537,7 +537,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 8 ]
+"values": [ 34 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -612,6 +612,40 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=42]
+resource_name = "defeat_down"
+length = 0.5
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 38, 39, 40, 41, 42 ]
+}
+
+[sub_resource type="Animation" id=41]
+resource_name = "defeat_up"
+length = 0.5
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 37, 38, 39, 40, 41, 42 ]
+}
+
 [sub_resource type="Animation" id=20]
 resource_name = "hit_down"
 length = 0.416667
@@ -626,7 +660,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 5 ]
+"values": [ 31 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -715,7 +749,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 4 ]
+"values": [ 30 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -792,7 +826,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=13]
 resource_name = "idle_down"
-length = 0.1
+length = 0.416667
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -802,10 +836,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 5, 6, 7, 8, 9 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -882,7 +916,7 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=11]
 resource_name = "idle_up"
-length = 0.1
+length = 0.416667
 loop = true
 step = 0.0833333
 tracks/0/type = "value"
@@ -892,10 +926,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 0, 1, 2, 3, 4 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -981,10 +1015,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 3 ]
+"values": [ 28, 29 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -1070,10 +1104,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.25 ),
+"transitions": PoolRealArray( 1, 1 ),
 "update": 1,
-"values": [ 2 ]
+"values": [ 26, 27 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -1150,9 +1184,9 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=16]
 resource_name = "retreat_down"
-length = 0.1
+length = 0.291667
 loop = true
-step = 0.0833333
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
 tracks/0/interp = 1
@@ -1160,10 +1194,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0416667, 0.125, 0.208333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 1 ]
+"values": [ 22, 23, 24, 25 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -1240,9 +1274,9 @@ tracks/6/keys = {
 
 [sub_resource type="Animation" id=17]
 resource_name = "retreat_up"
-length = 0.1
+length = 0.291667
 loop = true
-step = 0.0833333
+step = 0.0416667
 tracks/0/type = "value"
 tracks/0/path = NodePath("BodySprite:frame")
 tracks/0/interp = 1
@@ -1250,10 +1284,10 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0 ),
-"transitions": PoolRealArray( 1 ),
+"times": PoolRealArray( 0, 0.0416667, 0.125, 0.208333 ),
+"transitions": PoolRealArray( 1, 1, 1, 1 ),
 "update": 1,
-"values": [ 0 ]
+"values": [ 18, 19, 20, 21 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -1328,6 +1362,40 @@ tracks/6/keys = {
 "values": [ true ]
 }
 
+[sub_resource type="Animation" id=40]
+resource_name = "run_down"
+length = 0.5
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 43, 44, 45, 46, 47, 48 ]
+}
+
+[sub_resource type="Animation" id=39]
+resource_name = "run_up"
+length = 0.5
+step = 0.0833333
+tracks/0/type = "value"
+tracks/0/path = NodePath("BodySprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.0833333, 0.166667, 0.25, 0.333333, 0.416667 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 43, 44, 45, 46, 47, 48 ]
+}
+
 [sub_resource type="Animation" id=38]
 resource_name = "stagger_down"
 length = 0.0833333
@@ -1343,7 +1411,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 11 ]
+"values": [ 36 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -1433,7 +1501,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 10 ]
+"values": [ 36 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -1522,7 +1590,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 7 ]
+"values": [ 33 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("Torso:position")
@@ -1611,7 +1679,7 @@ tracks/0/keys = {
 "times": PoolRealArray( 0 ),
 "transitions": PoolRealArray( 1 ),
 "update": 1,
-"values": [ 6 ]
+"values": [ 32 ]
 }
 tracks/1/type = "value"
 tracks/1/path = NodePath("SwordGuard:position")
@@ -1733,7 +1801,8 @@ shape = SubResource( 24 )
 material = SubResource( 32 )
 texture = ExtResource( 7 )
 flip_h = true
-hframes = 12
+hframes = 10
+vframes = 5
 
 [node name="ShaderAnimator" type="AnimationPlayer" parent="BodySprite"]
 autoplay = "default"
@@ -1749,6 +1818,8 @@ anims/advance_down = SubResource( 14 )
 anims/advance_up = SubResource( 15 )
 anims/block_down = SubResource( 30 )
 anims/block_up = SubResource( 29 )
+anims/defeat_down = SubResource( 42 )
+anims/defeat_up = SubResource( 41 )
 anims/hit_down = SubResource( 20 )
 anims/hit_up = SubResource( 21 )
 anims/idle_down = SubResource( 13 )
@@ -1757,6 +1828,8 @@ anims/lunge_down = SubResource( 19 )
 anims/lunge_up = SubResource( 18 )
 anims/retreat_down = SubResource( 16 )
 anims/retreat_up = SubResource( 17 )
+anims/run_down = SubResource( 40 )
+anims/run_up = SubResource( 39 )
 anims/stagger_down = SubResource( 38 )
 anims/stagger_up = SubResource( 37 )
 anims/test_lunge_down = SubResource( 26 )
@@ -1819,13 +1892,13 @@ animation_name = "test_lunge"
 
 [node name="Knockback" type="Node" parent="StateMachine"]
 script = ExtResource( 5 )
-animation_name = "idle"
+animation_name = "retreat"
 velocity = -150
 friction = 30
 
 [node name="Defeat" type="Node" parent="StateMachine"]
 script = ExtResource( 12 )
-animation_name = "hit"
+animation_name = "defeat"
 
 [node name="Block" type="Node" parent="StateMachine"]
 script = ExtResource( 14 )
@@ -1837,7 +1910,11 @@ animation_name = "stagger"
 
 [node name="Enter" type="Node" parent="StateMachine"]
 script = ExtResource( 17 )
-animation_name = "advance"
+animation_name = "run"
+
+[node name="Exit" type="Node" parent="StateMachine"]
+script = ExtResource( 18 )
+animation_name = "run"
 
 [node name="Label" type="Label" parent="."]
 visible = false

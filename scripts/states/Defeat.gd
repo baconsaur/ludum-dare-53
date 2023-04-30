@@ -23,3 +23,4 @@ func process(delta):
 		
 	done = true
 	knight.emit_signal("defeated")
+	return state_map["Exit"]

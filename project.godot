@@ -27,6 +27,11 @@ _global_script_classes=[ {
 "base": "BaseState",
 "class": "Enter",
 "language": "GDScript",
+"path": "res://scripts/states/Exit.gd"
+}, {
+"base": "BaseState",
+"class": "Exit",
+"language": "GDScript",
 "path": "res://scripts/states/Enter.gd"
 }, {
 "base": "Move",
@@ -69,6 +74,7 @@ _global_script_class_icons={
 "Block": "",
 "Defeat": "",
 "Enter": "",
+"Exit": "",
 "Hit": "",
 "Idle": "",
 "Knight": "",

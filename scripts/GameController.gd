@@ -29,7 +29,6 @@ func _process(delta):
 		pause()
 
 func spawn_knight():
-	enter_bound.disabled = true
 	var knight = knight_obj.instance()
 	var spawn_point = camera.position + opponent_spawn_offset
 	knight.position = spawn_point - Vector2(spawn_run_distance, 0)
@@ -38,6 +37,7 @@ func spawn_knight():
 	knight.connect("defeated", self, "handle_defeat", [knight])
 	knight.connect("big_hit", self, "big_hit")
 	knight.connect("spawned", self, "complete_spawn")
+	knight.connect("exited", self, "complete_exit", [knight])
 
 func complete_spawn():
 	enter_bound.disabled = false
@@ -47,12 +47,18 @@ func handle_defeat(knight):
 	score += 1
 	score_label.text = str(score)
 	
-	knight.queue_free()
+	knight.exit(camera.position + opponent_spawn_offset - Vector2(spawn_run_distance, 0))
 	if player.is_defeated:
 		return
-	
+
+	enter_bound.disabled = true
 	player.suspend_actions = true
+
+func complete_exit(knight):
+	knight.queue_free()
 	
+	if player.is_defeated:
+		return
 	var tween = get_tree().create_tween()
 	tween.tween_property(camera, "position:x", player.position.x - player_spawn_offset.x, 1)
 	tween.tween_callback(self, "spawn_knight")

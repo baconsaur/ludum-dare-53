@@ -47,9 +47,6 @@ func handle_action(action):
 	change_state(next_state)
 
 func change_state(new_state):
-	if current_state is Defeat:
-		return
-
 	if not new_state:
 		return
 

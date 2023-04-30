@@ -4,6 +4,7 @@ extends KinematicBody2D
 signal defeated
 signal big_hit
 signal spawned
+signal exited
 
 enum Actions {
 	ADVANCE,
@@ -44,6 +45,7 @@ var is_defeated = false
 var is_spawned = false
 var spawn_position
 var suspend_actions = false
+var exit_position = null
 
 onready var states = $StateMachine
 onready var sprite = $BodySprite
@@ -107,6 +109,9 @@ func big_hit():
 
 func knock_back():
 	states.handle_action(Actions.KNOCKBACK)
+
+func exit(pos):
+	exit_position = pos
 
 func _on_Torso_body_entered(body):
 	handle_hit(body, "torso", shirt)
