@@ -1857,16 +1857,20 @@ shape = SubResource( 28 )
 
 [node name="ClashSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 9 )
+bus = "Sound"
 
 [node name="ClinkSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 11 )
+bus = "Sound"
 
 [node name="SliceSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 10 )
+bus = "Sound"
 
 [node name="SwishSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource( 15 )
 volume_db = 8.755
+bus = "Sound"
 
 [connection signal="body_entered" from="Torso" to="." method="_on_Torso_body_entered"]
 [connection signal="body_entered" from="Legs" to="." method="_on_Legs_body_entered"]

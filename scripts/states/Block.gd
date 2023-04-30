@@ -19,6 +19,7 @@ func handle_action(action):
 		return state_map["Hit"]
 	
 	if action == Knight.Actions.KNOCKBACK:
+		knight.clink_sound.play()
 		can_counter = true
 
 func enter():
