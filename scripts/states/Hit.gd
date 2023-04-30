@@ -12,6 +12,7 @@ func enter():
 	.enter()
 	done = false
 	knight.can_be_damaged = false
+	knight.shader_animator.play("invulnerable")
 
 func process(delta):
 	var new_state = .process(delta)
@@ -32,3 +33,4 @@ func complete_hit(anim_name):
 func exit():
 	.exit()
 	knight.can_be_damaged = true
+	knight.shader_animator.play("default")

@@ -14,10 +14,15 @@ velocity = -200
 velocity = 200
 
 [node name="Hit" parent="StateMachine" index="4"]
+cooldown = 0.5
 velocity = 150
 
 [node name="Knockback" parent="StateMachine" index="6"]
+cooldown = 0.5
 velocity = 150
+
+[node name="Block" parent="StateMachine" index="8"]
+counter_velocity = -50
 
 [node name="Label" parent="." index="7"]
 rect_scale = Vector2( -1, 1 )

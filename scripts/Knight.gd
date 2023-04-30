@@ -2,6 +2,7 @@ class_name Knight
 extends KinematicBody2D
 
 signal defeated
+signal big_hit
 
 enum Actions {
 	ADVANCE,
@@ -10,6 +11,8 @@ enum Actions {
 	SWORD_UP,
 	SWORD_DOWN,
 	HIT,
+	STUN,
+	BLOCK,
 	DEFEATED,
 	KNOCKBACK,
 }
@@ -45,10 +48,12 @@ onready var test_sword = $SwordLunge/TestSword
 onready var anim_player = $AnimationPlayer
 onready var shirt = $Torso/Shirt
 onready var pants = $Legs/Pants
+onready var shader_animator = $BodySprite/ShaderAnimator
 
 onready var clash_sound = $ClashSound
 onready var clink_sound = $ClinkSound
 onready var slice_sound = $SliceSound
+onready var swish_sound = $SwishSound
 
 func _ready():
 	start_y = position.y
@@ -74,8 +79,8 @@ func sword_down():
 	sword_position = SwordPositions.DOWN
 
 func lunge():
+	swish_sound.play()
 	can_damage = true
-	lunge_countdown = lunge_cooldown
 
 func complete_lunge():
 	can_damage = false
@@ -87,6 +92,12 @@ func fail_lunge():
 			clash_sound.play()
 		else:
 			clink_sound.play()
+
+func take_counter():
+	states.handle_action(Actions.STUN)
+
+func big_hit():
+	emit_signal("big_hit")
 
 func knock_back():
 	states.handle_action(Actions.KNOCKBACK)

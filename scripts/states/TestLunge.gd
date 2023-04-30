@@ -9,10 +9,18 @@ func init(_knight, _state_map):
 	knight.anim_player.connect("animation_finished", self, "complete_test")
 
 func handle_action(action):
-	return
+	if action == Knight.Actions.DEFEATED:
+		return state_map["Defeat"]
+
+	if action == Knight.Actions.HIT:
+		return state_map["Hit"]
+
+	if action == Knight.Actions.STUN:
+		return state_map["Stunned"]
 
 func enter():
 	done = false
+	knight.lunge_countdown = knight.lunge_cooldown
 	.enter()
 	success = run_test()
 
@@ -31,7 +39,13 @@ func process(delta):
 	return state_map["Knockback"]
 
 func run_test():
-	if knight.opponent and knight.sword_position == knight.opponent.sword_position:
+	if not knight.opponent:
+		return false
+	
+	if knight.opponent.states.current_state is Stunned:
+		return true
+	
+	if knight.sword_position == knight.opponent.sword_position:
 		return false
 
 	for body in knight.test_sword.get_overlapping_bodies():
@@ -41,3 +55,7 @@ func run_test():
 
 func complete_test(_anim_name):
 	done = true
+
+func exit():
+	knight.shader_animator.play("default")
+	.exit()

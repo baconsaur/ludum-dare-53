@@ -16,3 +16,5 @@ func _process(delta):
 		states.handle_action(Actions.SWORD_DOWN)
 	if Input.is_action_just_pressed("attack"):
 		states.handle_action(Actions.LUNGE)
+	if Input.is_action_just_pressed("block"):
+		states.handle_action(Actions.BLOCK)

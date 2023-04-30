@@ -16,6 +16,10 @@ func handle_action(action):
 			if knight.lunge_countdown > 0:
 				return
 			return state_map["TestLunge"]
+		Knight.Actions.BLOCK:
+			if knight.lunge_countdown > 0:
+				return
+			return state_map["Block"]
 
 func process(delta):
 	var new_state = .process(delta)

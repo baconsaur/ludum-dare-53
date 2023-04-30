@@ -20,6 +20,9 @@ func handle_action(action):
 	if action == Knight.Actions.HIT:
 		return state_map["Hit"]
 
+	if action == Knight.Actions.STUN:
+		return state_map["Stunned"]
+		
 	if action == Knight.Actions.KNOCKBACK:
 		return state_map["Knockback"]
 

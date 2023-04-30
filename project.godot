@@ -15,6 +15,11 @@ _global_script_classes=[ {
 "path": "res://scripts/BaseState.gd"
 }, {
 "base": "BaseState",
+"class": "Block",
+"language": "GDScript",
+"path": "res://scripts/states/Block.gd"
+}, {
+"base": "BaseState",
 "class": "Defeat",
 "language": "GDScript",
 "path": "res://scripts/states/Defeat.gd"
@@ -48,16 +53,23 @@ _global_script_classes=[ {
 "class": "StateMachine",
 "language": "GDScript",
 "path": "res://scripts/StateMachine.gd"
+}, {
+"base": "BaseState",
+"class": "Stunned",
+"language": "GDScript",
+"path": "res://scripts/states/Stunned.gd"
 } ]
 _global_script_class_icons={
 "BaseState": "",
+"Block": "",
 "Defeat": "",
 "Hit": "",
 "Idle": "",
 "Knight": "",
 "Lunge": "",
 "Move": "",
-"StateMachine": ""
+"StateMachine": "",
+"Stunned": ""
 }
 
 [application]

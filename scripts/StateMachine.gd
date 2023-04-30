@@ -29,7 +29,7 @@ func process(delta):
 
 func handle_action(action):
 	var next_state = current_state.handle_action(action)
-	if action in [Knight.Actions.HIT, Knight.Actions.DEFEATED]:
+	if action in [Knight.Actions.HIT, Knight.Actions.DEFEATED, Knight.Actions.STUN]:
 		change_state(next_state)
 		return
 	

@@ -9,10 +9,12 @@ var knight_obj = preload("res://scenes/Knight.tscn")
 
 onready var player = $PlayerKnight
 onready var ui = $CanvasLayer/UI
+onready var camera = $Camera2D
 
 
 func _ready():
 	player.connect("defeated", self, "game_over")
+	player.connect("big_hit", self, "big_hit")
 	spawn_knight()
 
 func _process(delta):
@@ -24,6 +26,7 @@ func spawn_knight():
 	knight.position = opponent_spawn_point
 	add_child(knight)
 	knight.connect("defeated", self, "handle_defeat", [knight])
+	knight.connect("big_hit", self, "big_hit")
 
 func handle_defeat(knight):
 	knight.queue_free()
@@ -33,6 +36,9 @@ func handle_defeat(knight):
 	yield(get_tree().create_timer(1.0), "timeout")
 	player.position = player_spawn_point
 	spawn_knight()
+
+func big_hit():
+	camera.shake()
 
 func pause():
 	var pause_instance = pause_menu.instance()
