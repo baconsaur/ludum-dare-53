@@ -6,10 +6,12 @@ export var opponent_spawn_point = Vector2()
 var pause_menu = preload("res://scenes/PauseMenu.tscn")
 var game_over_menu = preload("res://scenes/GameOverMenu.tscn")
 var knight_obj = preload("res://scenes/Knight.tscn")
+var score = 0
 
 onready var player = $PlayerKnight
 onready var ui = $CanvasLayer/UI
 onready var camera = $Camera2D
+onready var score_label = $CanvasLayer/UI/ScoreContainer/Score
 
 
 func _ready():
@@ -29,6 +31,9 @@ func spawn_knight():
 	knight.connect("big_hit", self, "big_hit")
 
 func handle_defeat(knight):
+	score += 1
+	score_label.text = str(score)
+	
 	knight.queue_free()
 	if player.is_defeated:
 		return
