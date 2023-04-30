@@ -3,6 +3,7 @@ extends KinematicBody2D
 
 signal defeated
 signal big_hit
+signal spawned
 
 enum Actions {
 	ADVANCE,
@@ -15,6 +16,7 @@ enum Actions {
 	BLOCK,
 	DEFEATED,
 	KNOCKBACK,
+	ENTER,
 }
 
 enum SwordPositions {
@@ -35,11 +37,13 @@ var strip_status = {
 	"torso": false,
 	"legs": false
 }
-var start_y = 0
 var can_damage = false
-var can_be_damaged = true
+var can_be_damaged = false
 var opponent = null
 var is_defeated = false
+var is_spawned = false
+var spawn_position
+var suspend_actions = false
 
 onready var states = $StateMachine
 onready var sprite = $BodySprite
@@ -55,19 +59,21 @@ onready var clink_sound = $ClinkSound
 onready var slice_sound = $SliceSound
 onready var swish_sound = $SwishSound
 
-func _ready():
-	start_y = position.y
-	states.init(self)
 
 func _process(delta):
-	if position.y != start_y:
-		position.y = start_y
+	if position.y != spawn_position.y:
+		position.y = spawn_position.y
 	if lunge_countdown > 0:
 		lunge_countdown -= delta
 	debug_label.text = states.current_state.name + " " + get_sword_position()
 
 func _physics_process(delta):
 	states.process(delta)
+
+func spawn(pos):
+	spawn_position = pos
+	randomize()
+	states.init(self)
 
 func get_sword_position():
 	return position_map[sword_position]

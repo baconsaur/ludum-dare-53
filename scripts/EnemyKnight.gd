@@ -8,13 +8,14 @@ var move_cooldown = min_move_interval
 var next_action
 
 
-func _ready():
-	randomize()
+func spawn(pos):
+	.spawn(pos)
+	states.handle_action(Actions.ENTER)
 
 func _process(delta):
 	._process(delta)
 
-	if is_defeated or (opponent and opponent.is_defeated) or not states.current_state is Idle:
+	if not is_spawned or is_defeated or (opponent and opponent.is_defeated) or not states.current_state is Idle:
 		return
 
 	if move_cooldown > 0:

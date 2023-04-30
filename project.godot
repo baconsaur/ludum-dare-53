@@ -24,6 +24,11 @@ _global_script_classes=[ {
 "language": "GDScript",
 "path": "res://scripts/states/Defeat.gd"
 }, {
+"base": "BaseState",
+"class": "Enter",
+"language": "GDScript",
+"path": "res://scripts/states/Enter.gd"
+}, {
 "base": "Move",
 "class": "Hit",
 "language": "GDScript",
@@ -63,6 +68,7 @@ _global_script_class_icons={
 "BaseState": "",
 "Block": "",
 "Defeat": "",
+"Enter": "",
 "Hit": "",
 "Idle": "",
 "Knight": "",

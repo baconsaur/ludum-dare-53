@@ -5,16 +5,14 @@
 [ext_resource path="res://ui/theme.tres" type="Theme" id=3]
 [ext_resource path="res://scenes/PlayerKnight.tscn" type="PackedScene" id=4]
 
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 576, 26 )
+
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 40, 75 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 178, 26 )
-
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
-player_spawn_point = Vector2( 64, 14 )
-opponent_spawn_point = Vector2( -64, 14 )
 
 [node name="PlayerKnight" parent="." instance=ExtResource( 4 )]
 position = Vector2( 64, 14 )
@@ -22,6 +20,27 @@ position = Vector2( 64, 14 )
 [node name="Camera2D" type="Camera2D" parent="."]
 current = true
 script = ExtResource( 2 )
+
+[node name="Floor" type="StaticBody2D" parent="Camera2D" groups=["Terrain"]]
+position = Vector2( 0, 72 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Floor"]
+shape = SubResource( 2 )
+
+[node name="Bounds" type="Node2D" parent="Camera2D"]
+
+[node name="BoundsL" type="StaticBody2D" parent="Camera2D/Bounds" groups=["Terrain"]]
+position = Vector2( -144, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Bounds/BoundsL"]
+shape = SubResource( 1 )
+disabled = true
+
+[node name="BoundsR" type="StaticBody2D" parent="Camera2D/Bounds" groups=["Terrain"]]
+position = Vector2( 144, 0 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Bounds/BoundsR"]
+shape = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -52,21 +71,3 @@ size_flags_horizontal = 4
 text = "0"
 align = 1
 valign = 1
-
-[node name="BoundsL" type="StaticBody2D" parent="." groups=["Terrain"]]
-position = Vector2( -144, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundsL"]
-shape = SubResource( 1 )
-
-[node name="BoundsR" type="StaticBody2D" parent="." groups=["Terrain"]]
-position = Vector2( 144, 0 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BoundsR"]
-shape = SubResource( 1 )
-
-[node name="Floor" type="StaticBody2D" parent="." groups=["Terrain"]]
-position = Vector2( 0, 72 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Floor"]
-shape = SubResource( 2 )

@@ -1,9 +1,14 @@
 extends Knight
 
 
+func spawn(pos):
+	.spawn(pos)
+	can_be_damaged = true
+	suspend_actions = true
+
 func _process(delta):
 	._process(delta)
-	if is_defeated or (opponent and opponent.is_defeated):
+	if is_defeated or (opponent and opponent.is_defeated) or suspend_actions:
 		return
 
 	if Input.is_action_pressed("left"):

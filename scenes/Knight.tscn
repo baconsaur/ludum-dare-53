@@ -1,4 +1,4 @@
-[gd_scene load_steps=48 format=2]
+[gd_scene load_steps=49 format=2]
 
 [ext_resource path="res://icon.png" type="Texture" id=1]
 [ext_resource path="res://scripts/EnemyKnight.gd" type="Script" id=2]
@@ -16,6 +16,7 @@
 [ext_resource path="res://scripts/states/Block.gd" type="Script" id=14]
 [ext_resource path="res://sounds/swish.mp3" type="AudioStream" id=15]
 [ext_resource path="res://scripts/states/Stunned.gd" type="Script" id=16]
+[ext_resource path="res://scripts/states/Enter.gd" type="Script" id=17]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5.25, 5 )
@@ -1833,6 +1834,10 @@ animation_name = "block"
 [node name="Stunned" type="Node" parent="StateMachine"]
 script = ExtResource( 16 )
 animation_name = "stagger"
+
+[node name="Enter" type="Node" parent="StateMachine"]
+script = ExtResource( 17 )
+animation_name = "advance"
 
 [node name="Label" type="Label" parent="."]
 visible = false

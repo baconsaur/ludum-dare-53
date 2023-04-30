@@ -14,6 +14,9 @@ func enter():
 	play_animation()
 
 func handle_action(action):
+	if action == Knight.Actions.ENTER:
+		return state_map["Enter"]
+		
 	if action == Knight.Actions.DEFEATED:
 		return state_map["Defeat"]
 
