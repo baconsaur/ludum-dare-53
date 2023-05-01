@@ -18,6 +18,7 @@ func handle_action(action):
 	
 	if action == Knight.Actions.KNOCKBACK:
 		knight.clash_sound.play()
+		knight.clash_particles.emitting = true
 		can_counter = true
 
 func enter():

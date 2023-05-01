@@ -17,6 +17,8 @@ func enter():
 	done = false
 	.enter()
 	knight.lunge()
+	if knight.opponent and knight.opponent.states.current_state is Stunned:
+		knight.opponent.handle_hit(knight, "legs" if knight.sword_position == Knight.SwordPositions.DOWN else "torso")
 
 func process(delta):
 	var new_state = .process(delta)

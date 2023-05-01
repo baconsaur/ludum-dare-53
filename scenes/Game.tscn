@@ -9,7 +9,7 @@
 extents = Vector2( 576, 26 )
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 40, 75 )
+extents = Vector2( 34, 75 )
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
@@ -33,6 +33,7 @@ shape = SubResource( 2 )
 position = Vector2( -144, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Bounds/BoundsL"]
+position = Vector2( -4, 0 )
 shape = SubResource( 1 )
 disabled = true
 
@@ -40,6 +41,7 @@ disabled = true
 position = Vector2( 144, 0 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Bounds/BoundsR"]
+position = Vector2( 2, 0 )
 shape = SubResource( 1 )
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]

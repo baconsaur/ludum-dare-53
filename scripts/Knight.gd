@@ -143,16 +143,15 @@ func complete_lunge():
 
 func fail_lunge():
 	if opponent:
-		opponent.knock_back()
 		if opponent.sword_position == sword_position and opponent.states.current_state.name == "TestLunge":
 			clash_sound.play()
 			clash_particles.emitting = true
 			emit_signal("big_hit")
 		else:
 			clink_sound.play()
+		opponent.knock_back()
 
 func take_counter():
-	clash_particles.emitting = true
 	states.handle_action(Actions.STUN)
 
 func big_hit():

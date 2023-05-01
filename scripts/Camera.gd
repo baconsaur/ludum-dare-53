@@ -1,7 +1,7 @@
 extends Camera2D
 
-export var shake_time = 0.175
-export var shake_factor = 2.5
+export var shake_time = 0.15
+export var shake_factor = 2
 
 var shake_countdown = 0
 var shake_start = Vector2.ZERO
