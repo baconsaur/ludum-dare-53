@@ -36,13 +36,10 @@ func process(delta):
 	return state_map["Knockback"]
 
 func run_test():
-	if not knight.opponent:
-		return false
-	
-	if knight.opponent.states.current_state is Stunned:
+	if knight.opponent and knight.opponent.states.current_state is Stunned:
 		return true
 	
-	if knight.sword_position == knight.opponent.sword_position:
+	if knight.opponent and knight.sword_position == knight.opponent.sword_position:
 		return false
 
 	for body in knight.test_sword.get_overlapping_bodies():

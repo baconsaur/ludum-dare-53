@@ -19,6 +19,7 @@
 [ext_resource path="res://scripts/states/Enter.gd" type="Script" id=17]
 [ext_resource path="res://scripts/states/Exit.gd" type="Script" id=18]
 [ext_resource path="res://sprites/knight_bottom.png" type="Texture" id=19]
+[ext_resource path="res://scenes/Knight.gdshader" type="Shader" id=20]
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 5.25, 5 )
@@ -29,28 +30,19 @@ extents = Vector2( 11.125, 2 )
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 11, 2 )
 
-[sub_resource type="Shader" id=31]
-code = "shader_type canvas_item;
-
-uniform bool active = false;
-uniform float alpha = 1.0;
-
-void fragment() {
-	vec4 previous_color = texture(TEXTURE, UV);
-	vec4 flash_color = vec4(1.0, 1.0, 1.0, previous_color.a * alpha);
-	vec4 new_color = previous_color;
-	if (active == true)
-	{
-		new_color = flash_color
-	}
-	COLOR = new_color;
-}"
-
 [sub_resource type="ShaderMaterial" id=32]
 resource_local_to_scene = true
-shader = SubResource( 31 )
+shader = ExtResource( 20 )
 shader_param/active = false
 shader_param/alpha = 1.0
+shader_param/skin_base = Plane( 1, 1, 1, 1 )
+shader_param/skin_shading = Plane( 1, 1, 1, 1 )
+shader_param/blush = Plane( 1, 1, 1, 1 )
+shader_param/eyes = Plane( 1, 1, 1, 1 )
+shader_param/underwear = Plane( 1, 1, 1, 1 )
+shader_param/top_base = Plane( 1, 1, 1, 1 )
+shader_param/coat_of_arms = Plane( 1, 1, 1, 1 )
+shader_param/sleeves_pants = Plane( 1, 1, 1, 1 )
 
 [sub_resource type="Animation" id=34]
 length = 0.001
@@ -2249,6 +2241,9 @@ extents = Vector2( 24.5, 23.5 )
 [node name="Knight" type="KinematicBody2D" groups=["Knight"]]
 position = Vector2( 64, 32 )
 script = ExtResource( 2 )
+skin_colors = [ Color( 0.968627, 0.866667, 0.776471, 1 ), Color( 0.905882, 0.772549, 0.74902, 1 ), Color( 0.8, 0.639216, 0.494118, 1 ), Color( 0.721569, 0.541176, 0.47451, 1 ), Color( 0.517647, 0.388235, 0.305882, 1 ), Color( 0.458824, 0.305882, 0.243137, 1 ) ]
+eye_colors = [ Color( 0.12549, 0.0784314, 0.0431373, 1 ), Color( 0.32549, 0.564706, 0.2, 1 ), Color( 0.243137, 0.537255, 0.721569, 1 ), Color( 0.313726, 0.313726, 0.313726, 1 ) ]
+blush_color = Color( 1, 0.568627, 0.72549, 1 )
 
 [node name="SwordGuard" type="CollisionShape2D" parent="."]
 position = Vector2( 4, 2 )
@@ -2279,12 +2274,14 @@ anims/invulnerable = SubResource( 35 )
 anims/warning = SubResource( 33 )
 
 [node name="Pants" type="Sprite" parent="BodySprite"]
+use_parent_material = true
 texture = ExtResource( 19 )
 flip_h = true
 hframes = 10
 vframes = 7
 
 [node name="Shirt" type="Sprite" parent="BodySprite"]
+use_parent_material = true
 texture = ExtResource( 1 )
 flip_h = true
 hframes = 10

@@ -13,6 +13,8 @@ func enter():
 	done = false
 	knight.can_be_damaged = false
 	knight.shader_animator.play("invulnerable")
+	if knight.test_move(knight.get_transform(), Vector2(velocity * 2, 0)):
+		knight.velocity.x = velocity
 
 func handle_action(action):
 	return
