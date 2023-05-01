@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=2]
+[gd_scene load_steps=28 format=2]
 
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=2]
@@ -12,6 +12,12 @@
 [ext_resource path="res://sprites/tutorial/large_key.png" type="Texture" id=10]
 [ext_resource path="res://sprites/tutorial/mouse2.png" type="Texture" id=11]
 [ext_resource path="res://sprites/tutorial/mouse3.png" type="Texture" id=12]
+[ext_resource path="res://sprites/ground.png" type="Texture" id=13]
+[ext_resource path="res://sprites/clouds.png" type="Texture" id=14]
+[ext_resource path="res://sprites/hills.png" type="Texture" id=15]
+[ext_resource path="res://sprites/audience.png" type="Texture" id=16]
+[ext_resource path="res://sprites/mountains.png" type="Texture" id=17]
+[ext_resource path="res://sprites/trees.png" type="Texture" id=18]
 
 [sub_resource type="RectangleShape2D" id=2]
 extents = Vector2( 576, 26 )
@@ -259,6 +265,57 @@ tracks/1/keys = {
 
 [node name="Game" type="Node2D"]
 script = ExtResource( 1 )
+
+[node name="ParallaxBackground" type="ParallaxBackground" parent="."]
+
+[node name="ParallaxLayer" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0, 1 )
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Clouds" type="Sprite" parent="ParallaxBackground/ParallaxLayer"]
+position = Vector2( 0, -48 )
+texture = ExtResource( 14 )
+
+[node name="ParallaxLayer2" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.1, 1 )
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Mountains" type="Sprite" parent="ParallaxBackground/ParallaxLayer2"]
+position = Vector2( 0, 9 )
+texture = ExtResource( 17 )
+
+[node name="ParallaxLayer5" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.2, 1 )
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Trees" type="Sprite" parent="ParallaxBackground/ParallaxLayer5"]
+position = Vector2( 32, -75 )
+texture = ExtResource( 18 )
+offset = Vector2( -32, 80 )
+
+[node name="ParallaxLayer6" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.4, 1 )
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Hills" type="Sprite" parent="ParallaxBackground/ParallaxLayer6"]
+position = Vector2( 120, -66 )
+texture = ExtResource( 15 )
+offset = Vector2( -120, 80 )
+
+[node name="ParallaxLayer3" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_scale = Vector2( 0.8, 1 )
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Audience" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+position = Vector2( 0, -10 )
+texture = ExtResource( 16 )
+
+[node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
+motion_mirroring = Vector2( 512, 0 )
+
+[node name="Ground" type="Sprite" parent="ParallaxBackground/ParallaxLayer4"]
+position = Vector2( 0, 80 )
+texture = ExtResource( 13 )
 
 [node name="PlayerKnight" parent="." instance=ExtResource( 4 )]
 position = Vector2( 64, 14 )

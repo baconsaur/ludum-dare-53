@@ -6,6 +6,12 @@
 [node name="MainMenu" instance=ExtResource( 1 )]
 script = ExtResource( 2 )
 
+[node name="Panel" type="Panel" parent="." index="0"]
+margin_left = 8.0
+margin_top = 8.0
+margin_right = 248.0
+margin_bottom = 136.0
+
 [node name="Label" parent="VBoxContainer" index="0"]
 margin_top = 43.0
 margin_bottom = 54.0
