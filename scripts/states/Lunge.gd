@@ -9,7 +9,9 @@ func init(_knight, _state_map):
 	knight.anim_player.connect("animation_finished", self, "complete_lunge")
 
 func handle_action(action):
-	return
+	if action == Knight.Actions.HIT:
+		done = true
+		return state_map["Hit"]
 
 func enter():
 	done = false
@@ -25,6 +27,9 @@ func process(delta):
 		return state_map["Idle"]
 
 func complete_lunge(anim_name):
+	if done:
+		return
+
 	if "lunge" in anim_name:
 		done = true
 		knight.complete_lunge()

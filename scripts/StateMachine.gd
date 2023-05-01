@@ -29,7 +29,7 @@ func process(delta):
 
 func handle_action(action):
 	var next_state = current_state.handle_action(action)
-	if action in [Knight.Actions.HIT, Knight.Actions.DEFEATED, Knight.Actions.STUN]:
+	if action in [Knight.Actions.HIT, Knight.Actions.STUN]:
 		change_state(next_state)
 		return
 	
@@ -38,8 +38,10 @@ func handle_action(action):
 			# Avoid accidental double movement
 			action in [Knight.Actions.ADVANCE, Knight.Actions.RETREAT] and current_state is Move
 		) and not (
-			# No double lunge
-			current_state is Lunge and action == Knight.Actions.LUNGE
+			# No double lunge, no changing position while taking a hit
+			(
+				current_state is Lunge and action == Knight.Actions.LUNGE
+			) or current_state is Hit and action in [Knight.Actions.SWORD_DOWN, Knight.Actions.SWORD_UP]
 		):
 			action_buffer = action
 			buffer_countdown = buffer_time

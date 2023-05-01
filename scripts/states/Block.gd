@@ -33,8 +33,8 @@ func process(delta):
 		return new_state
 	
 	if can_counter:
-		knight.velocity.x = counter_velocity
-		knight.velocity = knight.move_and_slide(knight.velocity, Vector2.UP)
+#		knight.velocity.x = counter_velocity
+#		knight.velocity = knight.move_and_slide(knight.velocity, Vector2.UP)
 		knight.opponent.take_counter()
 		return state_map["TestLunge"]
 	

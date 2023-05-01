@@ -16,9 +16,6 @@ func enter():
 func handle_action(action):
 	if action == Knight.Actions.ENTER:
 		return state_map["Enter"]
-		
-	if action == Knight.Actions.DEFEATED:
-		return state_map["Defeat"]
 
 	if action == Knight.Actions.HIT:
 		return state_map["Hit"]
@@ -44,4 +41,3 @@ func exit():
 
 func play_animation():
 	knight.anim_player.play(animation_name + "_" + knight.get_sword_position())
-	knight.anim_player.seek(0)

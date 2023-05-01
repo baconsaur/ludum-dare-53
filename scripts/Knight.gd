@@ -46,14 +46,15 @@ var is_spawned = false
 var spawn_position
 var suspend_actions = false
 var exit_position = null
+var last_hit = null
 
 onready var states = $StateMachine
 onready var sprite = $BodySprite
 onready var debug_label = $Label
 onready var test_sword = $SwordLunge/TestSword
 onready var anim_player = $AnimationPlayer
-onready var shirt = $Torso/Shirt
-onready var pants = $Legs/Pants
+onready var shirt = $BodySprite/Shirt
+onready var pants = $BodySprite/Pants
 onready var shader_animator = $BodySprite/ShaderAnimator
 
 onready var clash_sound = $ClashSound
@@ -114,24 +115,23 @@ func exit(pos):
 	exit_position = pos
 
 func _on_Torso_body_entered(body):
-	handle_hit(body, "torso", shirt)
+	handle_hit(body, "torso")
 
 func _on_Legs_body_entered(body):
-	handle_hit(body, "legs", pants)
+	handle_hit(body, "legs")
 
-func handle_hit(body, part, clothing_item):
+func handle_hit(body, part):
+	last_hit = part
+	
 	if not body.is_in_group("Knight") or body == self or not body.can_damage or not can_be_damaged:
 		return
 	
 	if not strip_status[part]:
-		clothing_item.play("damaged")
 		slice_sound.play()
 		strip_status[part] = true
 
 	if strip_status["torso"] and strip_status["legs"]:
 		is_defeated = true
-		states.handle_action(Actions.DEFEATED)
-		return
 
 	states.handle_action(Actions.HIT)
 

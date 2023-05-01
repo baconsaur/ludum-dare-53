@@ -23,4 +23,6 @@ func process(delta):
 		
 	done = true
 	knight.emit_signal("defeated")
-	return state_map["Exit"]
+	
+	if not knight is Player:
+		return state_map["Exit"]

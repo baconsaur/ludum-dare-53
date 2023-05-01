@@ -9,9 +9,6 @@ func init(_knight, _state_map):
 	knight.anim_player.connect("animation_finished", self, "complete_test")
 
 func handle_action(action):
-	if action == Knight.Actions.DEFEATED:
-		return state_map["Defeat"]
-
 	if action == Knight.Actions.HIT:
 		return state_map["Hit"]
 
