@@ -91,6 +91,7 @@ onready var anim_player = $AnimationPlayer
 onready var shirt = $BodySprite/Shirt
 onready var pants = $BodySprite/Pants
 onready var shader_animator = $BodySprite/ShaderAnimator
+onready var clash_particles = $SwordLunge/ClashParticles
 
 onready var clash_sound = $ClashSound
 onready var clink_sound = $ClinkSound
@@ -145,10 +146,13 @@ func fail_lunge():
 		opponent.knock_back()
 		if opponent.sword_position == sword_position and opponent.states.current_state.name == "TestLunge":
 			clash_sound.play()
+			clash_particles.emitting = true
+			emit_signal("big_hit")
 		else:
 			clink_sound.play()
 
 func take_counter():
+	clash_particles.emitting = true
 	states.handle_action(Actions.STUN)
 
 func big_hit():

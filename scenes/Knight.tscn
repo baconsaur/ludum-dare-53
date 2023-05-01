@@ -1,4 +1,4 @@
-[gd_scene load_steps=54 format=2]
+[gd_scene load_steps=55 format=2]
 
 [ext_resource path="res://sprites/knight_top.png" type="Texture" id=1]
 [ext_resource path="res://scripts/EnemyKnight.gd" type="Script" id=2]
@@ -29,6 +29,10 @@ extents = Vector2( 11.125, 2 )
 
 [sub_resource type="RectangleShape2D" id=24]
 extents = Vector2( 11, 2 )
+
+[sub_resource type="Gradient" id=43]
+offsets = PoolRealArray( 0, 0.557047, 0.872483 )
+colors = PoolColorArray( 1, 1, 1, 0.945098, 0.947888, 0.947888, 0.947888, 0.73557, 0.352941, 0.352941, 0.352941, 0 )
 
 [sub_resource type="ShaderMaterial" id=32]
 resource_local_to_scene = true
@@ -2258,6 +2262,22 @@ disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="SwordLunge/TestSword"]
 shape = SubResource( 24 )
+
+[node name="ClashParticles" type="CPUParticles2D" parent="SwordLunge"]
+emitting = false
+amount = 35
+lifetime = 0.25
+one_shot = true
+speed_scale = 2.21
+explosiveness = 0.84
+randomness = 1.0
+lifetime_randomness = 1.0
+spread = 180.0
+gravity = Vector2( 0, 981 )
+initial_velocity = 237.07
+initial_velocity_random = 1.0
+damping = 23.71
+color_ramp = SubResource( 43 )
 
 [node name="BodySprite" type="Sprite" parent="."]
 material = SubResource( 32 )

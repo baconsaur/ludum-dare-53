@@ -7,6 +7,7 @@ export var velocity = -200
 func enter():
 	.enter()
 	knight.sprite.flip_h = false
+	knight.position.x -= 24
 
 func process(delta):
 	if not knight.exit_position:
