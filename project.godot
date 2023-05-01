@@ -103,6 +103,7 @@ config/icon="res://icon.png"
 
 IntegerResolutionHandler="*res://addons/integer_resolution_handler/integer_resolution_handler.gd"
 TransitionManager="*res://scenes/TransitionManager.tscn"
+Global="*res://scripts/Global.gd"
 
 [display]
 
