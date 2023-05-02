@@ -3,8 +3,8 @@ extends Control
 onready var music_bus = AudioServer.get_bus_index("Music")
 onready var sounds_bus = AudioServer.get_bus_index("Sound")
 
-onready var toggle_music_button = $VBoxContainer/ToggleMusicButton
-onready var toggle_sound_button = $VBoxContainer/ToggleSoundButton
+onready var toggle_music_button = $ColorRect/VBoxContainer/ToggleMusicButton
+onready var toggle_sound_button = $ColorRect/VBoxContainer/ToggleSoundButton
 
 
 func _ready():

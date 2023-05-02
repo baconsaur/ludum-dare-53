@@ -1,7 +1,7 @@
 extends Node2D
 
 export var spawn_run_distance = 100
-export var max_tutorial_time = 5
+export var max_tutorial_time = 3
 
 var pause_menu = preload("res://scenes/PauseMenu.tscn")
 var game_over_menu = preload("res://scenes/GameOverMenu.tscn")
@@ -23,7 +23,7 @@ onready var tutorial_player = $CanvasLayer/TutorialPlayer
 func _ready():
 	if not Global.tutorial_seen:
 		tutorial_player.connect("animation_finished", self, "handle_tutorial_step")
-		tutorial_player.play("show_move_tutorial")
+		tutorial_player.play("show_exposition")
 		Global.tutorial_seen = true
 
 	player_spawn_offset = player.position - camera.position
@@ -73,10 +73,14 @@ func handle_player_action(action):
 		"fight":
 			if action in [Knight.Actions.LUNGE, Knight.Actions.BLOCK]:
 				dismiss_tutorial()
+		"expo":
+			dismiss_tutorial()
 
 func handle_tutorial_step(anim_name):
 	if "hide_" in anim_name:
-		if current_tutorial == "move":
+		if current_tutorial == "expo":
+			tutorial_player.play("show_move_tutorial")
+		elif current_tutorial == "move":
 			tutorial_player.play("show_pos_tutorial")
 		elif current_tutorial == "pos":
 			tutorial_player.play("show_fight_tutorial")
@@ -84,7 +88,9 @@ func handle_tutorial_step(anim_name):
 		current_tutorial = null
 		return
 
-	if anim_name == "show_move_tutorial":
+	if anim_name == "show_exposition":
+		current_tutorial = "expo"
+	elif anim_name == "show_move_tutorial":
 		current_tutorial = "move"
 	elif anim_name == "show_pos_tutorial":
 		current_tutorial = "pos"
@@ -97,7 +103,9 @@ func dismiss_tutorial():
 	if not current_tutorial:
 		return
 
-	if current_tutorial == "move":
+	if current_tutorial == "expo":
+		tutorial_player.play("hide_exposition")
+	elif current_tutorial == "move":
 		tutorial_player.play("hide_move_tutorial")
 	elif current_tutorial == "pos":
 		tutorial_player.play("hide_pos_tutorial")

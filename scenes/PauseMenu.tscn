@@ -7,35 +7,33 @@
 pause_mode = 2
 script = ExtResource( 2 )
 
-[node name="Label" parent="VBoxContainer" index="0"]
-margin_top = 36.0
-margin_bottom = 47.0
-text = "Paused"
+[node name="Label" parent="ColorRect/VBoxContainer" index="0"]
+text = "PAUSED"
 
-[node name="ResumeButton" type="Button" parent="VBoxContainer" index="1"]
-margin_left = 99.0
-margin_top = 51.0
-margin_right = 141.0
-margin_bottom = 62.0
+[node name="ResumeButton" type="Button" parent="ColorRect/VBoxContainer" index="1"]
+margin_left = 107.0
+margin_top = 15.0
+margin_right = 149.0
+margin_bottom = 26.0
 size_flags_horizontal = 4
 text = "Resume"
 
-[node name="OptionsButton" type="Button" parent="VBoxContainer" index="2"]
-margin_left = 98.0
-margin_top = 66.0
-margin_right = 141.0
-margin_bottom = 77.0
+[node name="OptionsButton" type="Button" parent="ColorRect/VBoxContainer" index="2"]
+margin_left = 106.0
+margin_top = 30.0
+margin_right = 149.0
+margin_bottom = 41.0
 size_flags_horizontal = 4
 text = "Options"
 
-[node name="MenuButton" type="Button" parent="VBoxContainer" index="3"]
-margin_left = 90.0
-margin_top = 81.0
-margin_right = 150.0
-margin_bottom = 92.0
+[node name="MenuButton" type="Button" parent="ColorRect/VBoxContainer" index="3"]
+margin_left = 98.0
+margin_top = 45.0
+margin_right = 158.0
+margin_bottom = 56.0
 size_flags_horizontal = 4
 text = "Main Menu"
 
-[connection signal="pressed" from="VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ResumeButton" to="." method="_on_ResumeButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/OptionsButton" to="." method="_on_OptionsButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/MenuButton" to="." method="_on_MenuButton_pressed"]

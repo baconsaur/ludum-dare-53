@@ -7,35 +7,33 @@
 pause_mode = 2
 script = ExtResource( 2 )
 
-[node name="Label" parent="VBoxContainer" index="0"]
-margin_top = 36.0
-margin_bottom = 47.0
-text = "Options"
+[node name="Label" parent="ColorRect/VBoxContainer" index="0"]
+text = "OPTIONS"
 
-[node name="ToggleSoundButton" type="Button" parent="VBoxContainer" index="1"]
-margin_left = 68.0
-margin_top = 51.0
-margin_right = 171.0
-margin_bottom = 62.0
+[node name="ToggleSoundButton" type="Button" parent="ColorRect/VBoxContainer" index="1"]
+margin_left = 76.0
+margin_top = 15.0
+margin_right = 179.0
+margin_bottom = 26.0
 size_flags_horizontal = 4
 text = "Sound Effects Off"
 
-[node name="ToggleMusicButton" type="Button" parent="VBoxContainer" index="2"]
-margin_left = 92.0
-margin_top = 66.0
-margin_right = 147.0
-margin_bottom = 77.0
+[node name="ToggleMusicButton" type="Button" parent="ColorRect/VBoxContainer" index="2"]
+margin_left = 100.0
+margin_top = 30.0
+margin_right = 155.0
+margin_bottom = 41.0
 size_flags_horizontal = 4
 text = "Music Off"
 
-[node name="BackButton" type="Button" parent="VBoxContainer" index="3"]
-margin_left = 106.0
-margin_top = 81.0
-margin_right = 134.0
-margin_bottom = 92.0
+[node name="BackButton" type="Button" parent="ColorRect/VBoxContainer" index="3"]
+margin_left = 114.0
+margin_top = 45.0
+margin_right = 142.0
+margin_bottom = 56.0
 size_flags_horizontal = 4
 text = "Back"
 
-[connection signal="pressed" from="VBoxContainer/ToggleSoundButton" to="." method="_on_ToggleSoundButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/ToggleMusicButton" to="." method="_on_ToggleMusicButton_pressed"]
-[connection signal="pressed" from="VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ToggleSoundButton" to="." method="_on_ToggleSoundButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/ToggleMusicButton" to="." method="_on_ToggleMusicButton_pressed"]
+[connection signal="pressed" from="ColorRect/VBoxContainer/BackButton" to="." method="_on_BackButton_pressed"]

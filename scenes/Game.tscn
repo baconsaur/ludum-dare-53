@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=2]
+[gd_scene load_steps=29 format=2]
 
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=2]
@@ -18,9 +18,6 @@
 [ext_resource path="res://sprites/audience.png" type="Texture" id=16]
 [ext_resource path="res://sprites/mountains.png" type="Texture" id=17]
 [ext_resource path="res://sprites/trees.png" type="Texture" id=18]
-
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 576, 26 )
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 34, 75 )
@@ -99,9 +96,62 @@ tracks/5/keys = {
 "update": 1,
 "values": [ false ]
 }
+tracks/6/type = "value"
+tracks/6/path = NodePath("UI/TutorialContainer/Exposition:visible")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ false ]
+}
+tracks/7/type = "value"
+tracks/7/path = NodePath("UI/TutorialContainer/Exposition:modulate")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ) ]
+}
+
+[sub_resource type="Animation" id=11]
+resource_name = "hide_exposition"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/TutorialContainer/Exposition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 1,
+"values": [ true, false ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/TutorialContainer/Exposition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 1 ), Color( 1, 1, 1, 0 ) ]
+}
 
 [sub_resource type="Animation" id=3]
 resource_name = "hide_fight_tutorial"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/FightTutorial:modulate")
 tracks/0/interp = 1
@@ -109,7 +159,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0 ) ]
@@ -121,7 +171,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -129,6 +179,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=4]
 resource_name = "hide_move_tutorial"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/MoveTutorial:modulate")
 tracks/0/interp = 1
@@ -136,7 +187,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0 ) ]
@@ -148,7 +199,7 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
@@ -156,6 +207,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=5]
 resource_name = "hide_pos_tutorial"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/PositionTutorial:modulate")
 tracks/0/interp = 1
@@ -163,7 +215,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0.784314 ), Color( 1, 1, 1, 0 ) ]
@@ -175,14 +227,43 @@ tracks/1/loop_wrap = true
 tracks/1/imported = false
 tracks/1/enabled = true
 tracks/1/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 1,
 "values": [ true, false ]
 }
 
+[sub_resource type="Animation" id=10]
+resource_name = "show_exposition"
+length = 0.3
+tracks/0/type = "value"
+tracks/0/path = NodePath("UI/TutorialContainer/Exposition:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0 ),
+"transitions": PoolRealArray( 1 ),
+"update": 1,
+"values": [ true ]
+}
+tracks/1/type = "value"
+tracks/1/path = NodePath("UI/TutorialContainer/Exposition:modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"times": PoolRealArray( 0, 0.3 ),
+"transitions": PoolRealArray( 1, 1 ),
+"update": 0,
+"values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 1 ) ]
+}
+
 [sub_resource type="Animation" id=6]
 resource_name = "show_fight_tutorial"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/FightTutorial:modulate")
 tracks/0/interp = 1
@@ -190,7 +271,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.784314 ) ]
@@ -210,7 +291,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=7]
 resource_name = "show_move_tutorial"
-length = 0.5
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/MoveTutorial:modulate")
 tracks/0/interp = 1
@@ -218,7 +299,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 0.5 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.784314 ) ]
@@ -238,6 +319,7 @@ tracks/1/keys = {
 
 [sub_resource type="Animation" id=8]
 resource_name = "show_pos_tutorial"
+length = 0.3
 tracks/0/type = "value"
 tracks/0/path = NodePath("UI/TutorialContainer/PositionTutorial:modulate")
 tracks/0/interp = 1
@@ -245,7 +327,7 @@ tracks/0/loop_wrap = true
 tracks/0/imported = false
 tracks/0/enabled = true
 tracks/0/keys = {
-"times": PoolRealArray( 0, 1 ),
+"times": PoolRealArray( 0, 0.3 ),
 "transitions": PoolRealArray( 1, 1 ),
 "update": 0,
 "values": [ Color( 1, 1, 1, 0 ), Color( 1, 1, 1, 0.784314 ) ]
@@ -325,12 +407,6 @@ skin_colors = [ Color( 0.968627, 0.866667, 0.776471, 1 ), Color( 0.905882, 0.772
 current = true
 script = ExtResource( 2 )
 
-[node name="Floor" type="StaticBody2D" parent="Camera2D" groups=["Terrain"]]
-position = Vector2( 0, 72 )
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Camera2D/Floor"]
-shape = SubResource( 2 )
-
 [node name="Bounds" type="Node2D" parent="Camera2D"]
 
 [node name="BoundsL" type="StaticBody2D" parent="Camera2D/Bounds" groups=["Terrain"]]
@@ -354,15 +430,12 @@ shape = SubResource( 1 )
 anchor_right = 1.0
 anchor_bottom = 1.0
 theme = ExtResource( 3 )
-custom_constants/margin_right = 8
 custom_constants/margin_top = 8
-custom_constants/margin_left = 8
 custom_constants/margin_bottom = 8
 
 [node name="ScoreContainer" type="CenterContainer" parent="CanvasLayer/UI"]
-margin_left = 8.0
 margin_top = 8.0
-margin_right = 248.0
+margin_right = 256.0
 margin_bottom = 19.0
 grow_horizontal = 2
 mouse_filter = 1
@@ -370,8 +443,8 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 
 [node name="Score" type="Label" parent="CanvasLayer/UI/ScoreContainer"]
-margin_left = 116.0
-margin_right = 123.0
+margin_left = 124.0
+margin_right = 131.0
 margin_bottom = 11.0
 grow_horizontal = 2
 size_flags_horizontal = 4
@@ -381,18 +454,36 @@ valign = 1
 
 [node name="TutorialContainer" type="MarginContainer" parent="CanvasLayer/UI"]
 modulate = Color( 1, 1, 1, 0.788235 )
-margin_left = 8.0
 margin_top = 8.0
-margin_right = 248.0
-margin_bottom = 136.0
+margin_right = 256.0
+margin_bottom = 140.0
 mouse_filter = 1
 custom_constants/margin_top = 20
+
+[node name="Exposition" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer"]
+visible = false
+modulate = Color( 1, 1, 1, 0 )
+margin_top = 20.0
+margin_right = 256.0
+margin_bottom = 132.0
+grow_vertical = 0
+size_flags_horizontal = 3
+custom_constants/separation = 50
+alignment = 2
+
+[node name="Label" type="Label" parent="CanvasLayer/UI/TutorialContainer/Exposition"]
+margin_top = 87.0
+margin_right = 256.0
+margin_bottom = 112.0
+rect_min_size = Vector2( 0, 25 )
+text = "Strip challengers of their livery!"
+align = 1
 
 [node name="MoveTutorial" type="HBoxContainer" parent="CanvasLayer/UI/TutorialContainer"]
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 20.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 51.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -400,8 +491,8 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/MoveTutorial"]
-margin_left = 43.0
-margin_right = 95.0
+margin_left = 51.0
+margin_right = 103.0
 margin_bottom = 31.0
 alignment = 1
 
@@ -454,8 +545,8 @@ align = 1
 valign = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/MoveTutorial"]
-margin_left = 145.0
-margin_right = 197.0
+margin_left = 153.0
+margin_right = 205.0
 margin_bottom = 31.0
 alignment = 1
 
@@ -511,7 +602,7 @@ texture = ExtResource( 7 )
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 20.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 132.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -519,12 +610,12 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial"]
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 31.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer"]
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 11.0
 text = "Aim High"
 align = 1
@@ -532,28 +623,28 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer"]
 margin_top = 15.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 31.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer/HBoxContainer"]
-margin_left = 94.0
-margin_right = 110.0
+margin_left = 102.0
+margin_right = 118.0
 margin_bottom = 16.0
 texture = ExtResource( 8 )
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer/HBoxContainer"]
-margin_left = 114.0
+margin_left = 122.0
 margin_top = 2.0
-margin_right = 126.0
+margin_right = 134.0
 margin_bottom = 13.0
 text = "or"
 align = 1
 valign = 1
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer/HBoxContainer"]
-margin_left = 130.0
-margin_right = 146.0
+margin_left = 138.0
+margin_right = 154.0
 margin_bottom = 16.0
 texture = ExtResource( 5 )
 
@@ -575,12 +666,12 @@ valign = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial"]
 margin_top = 81.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 112.0
 alignment = 1
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer2"]
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 11.0
 text = "Aim Low"
 align = 1
@@ -588,28 +679,28 @@ valign = 1
 
 [node name="HBoxContainer" type="HBoxContainer" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer2"]
 margin_top = 15.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 31.0
 alignment = 1
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer2/HBoxContainer"]
-margin_left = 94.0
-margin_right = 110.0
+margin_left = 102.0
+margin_right = 118.0
 margin_bottom = 16.0
 texture = ExtResource( 9 )
 
 [node name="Label" type="Label" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer2/HBoxContainer"]
-margin_left = 114.0
+margin_left = 122.0
 margin_top = 2.0
-margin_right = 126.0
+margin_right = 134.0
 margin_bottom = 13.0
 text = "or"
 align = 1
 valign = 1
 
 [node name="TextureRect2" type="TextureRect" parent="CanvasLayer/UI/TutorialContainer/PositionTutorial/VBoxContainer2/HBoxContainer"]
-margin_left = 130.0
-margin_right = 146.0
+margin_left = 138.0
+margin_right = 154.0
 margin_bottom = 16.0
 texture = ExtResource( 5 )
 
@@ -633,7 +724,7 @@ valign = 1
 visible = false
 modulate = Color( 1, 1, 1, 0 )
 margin_top = 20.0
-margin_right = 240.0
+margin_right = 256.0
 margin_bottom = 53.0
 size_flags_horizontal = 3
 size_flags_vertical = 0
@@ -641,8 +732,8 @@ custom_constants/separation = 50
 alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/FightTutorial"]
-margin_left = 20.0
-margin_right = 95.0
+margin_left = 28.0
+margin_right = 103.0
 margin_bottom = 33.0
 alignment = 1
 
@@ -699,8 +790,8 @@ align = 1
 valign = 1
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="CanvasLayer/UI/TutorialContainer/FightTutorial"]
-margin_left = 145.0
-margin_right = 220.0
+margin_left = 153.0
+margin_right = 228.0
 margin_bottom = 33.0
 alignment = 1
 
@@ -758,9 +849,11 @@ valign = 1
 
 [node name="TutorialPlayer" type="AnimationPlayer" parent="CanvasLayer"]
 anims/RESET = SubResource( 9 )
+anims/hide_exposition = SubResource( 11 )
 anims/hide_fight_tutorial = SubResource( 3 )
 anims/hide_move_tutorial = SubResource( 4 )
 anims/hide_pos_tutorial = SubResource( 5 )
+anims/show_exposition = SubResource( 10 )
 anims/show_fight_tutorial = SubResource( 6 )
 anims/show_move_tutorial = SubResource( 7 )
 anims/show_pos_tutorial = SubResource( 8 )
