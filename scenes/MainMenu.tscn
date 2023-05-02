@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=18 format=2]
 
 [ext_resource path="res://scripts/AutoCamera.gd" type="Script" id=1]
 [ext_resource path="res://scripts/MainMenu.gd" type="Script" id=2]
@@ -10,6 +10,34 @@
 [ext_resource path="res://sprites/mountains.png" type="Texture" id=8]
 [ext_resource path="res://ui/theme.tres" type="Theme" id=9]
 [ext_resource path="res://ui/Ash.ttf" type="DynamicFontData" id=10]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 0, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 89, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 178, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 267, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 5 )
+region = Rect2( 0, 356, 512, 89 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
 
 [sub_resource type="DynamicFont" id=1]
 size = 32
@@ -67,9 +95,11 @@ offset = Vector2( -120, 80 )
 motion_scale = Vector2( 0.8, 1 )
 motion_mirroring = Vector2( 512, 0 )
 
-[node name="Audience" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="Audience" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2( 0, -10 )
-texture = ExtResource( 5 )
+frames = SubResource( 17 )
+frame = 3
+playing = true
 centered = false
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]

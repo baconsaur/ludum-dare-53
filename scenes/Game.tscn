@@ -1,4 +1,4 @@
-[gd_scene load_steps=29 format=2]
+[gd_scene load_steps=35 format=2]
 
 [ext_resource path="res://scripts/GameController.gd" type="Script" id=1]
 [ext_resource path="res://scripts/Camera.gd" type="Script" id=2]
@@ -18,6 +18,34 @@
 [ext_resource path="res://sprites/audience.png" type="Texture" id=16]
 [ext_resource path="res://sprites/mountains.png" type="Texture" id=17]
 [ext_resource path="res://sprites/trees.png" type="Texture" id=18]
+
+[sub_resource type="AtlasTexture" id=12]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 0, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=13]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 89, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=14]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 178, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=15]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 267, 512, 89 )
+
+[sub_resource type="AtlasTexture" id=16]
+atlas = ExtResource( 16 )
+region = Rect2( 0, 356, 512, 89 )
+
+[sub_resource type="SpriteFrames" id=17]
+animations = [ {
+"frames": [ SubResource( 12 ), SubResource( 13 ), SubResource( 14 ), SubResource( 15 ), SubResource( 16 ) ],
+"loop": true,
+"name": "default",
+"speed": 12.0
+} ]
 
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 34, 75 )
@@ -388,9 +416,10 @@ offset = Vector2( -120, 80 )
 motion_scale = Vector2( 0.8, 1 )
 motion_mirroring = Vector2( 512, 0 )
 
-[node name="Audience" type="Sprite" parent="ParallaxBackground/ParallaxLayer3"]
+[node name="Audience" type="AnimatedSprite" parent="ParallaxBackground/ParallaxLayer3"]
 position = Vector2( 0, -10 )
-texture = ExtResource( 16 )
+frames = SubResource( 17 )
+playing = true
 
 [node name="ParallaxLayer4" type="ParallaxLayer" parent="ParallaxBackground"]
 motion_mirroring = Vector2( 512, 0 )
